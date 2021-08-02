@@ -1,0 +1,33 @@
+format_version: 10
+pipelines:
+  testing2:
+    group: My-Pipelines
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-1ec3394:
+        git: https://github.com/valkyr13/Gesture-Controlled-Foxx-Game.git
+        username: valkyr13
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        encrypted_password: AES:uelBI1UivvmP2r9vXQn6RA==:XbhJO0+6W//0HRHNlT+klA==
+    stages:
+    - test-code:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          run:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - hello
+                - there
+                command: echo
+                run_if: passed
